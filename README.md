@@ -412,7 +412,8 @@ APP组件: fastjson com.alibaba.fastjson
 
 提交需求、提交BUG修复、技术交流、商务合作均可添加作者好友。
 
-
+## Stargazers
+[![Stargazers over time](https://starchart.cc/kelvinBen/AppInfoScanner.svg)](https://starchart.cc/kelvinBen/AppInfoScanner)
 
 # 404StarLink 2.0 - Galaxy
 ![](https://github.com/knownsec/404StarLink-Project/raw/master/logo.png)
