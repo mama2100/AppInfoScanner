@@ -119,7 +119,6 @@ class BaseTask(object):
         if all_flag:
             value_list = []
             with open(txt_result_path,"a+",encoding='utf-8',errors='ignore') as f:
-                print("===========",self.result_dict)
                 for key,value in self.result_dict.items():
                     f.write(key+"\r")
                     for result in value:

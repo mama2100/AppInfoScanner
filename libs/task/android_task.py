@@ -74,7 +74,7 @@ class AndroidTask(object):
 
     # 分解apk
     def __decode_apk__(self,file_path,apktool_path,output_path):
-        cmd_str = ("java -jar '%s' d -f '%s' -o '%s' --only-main-classe") % (str(apktool_path),str(file_path),str(output_path))
+        cmd_str = ('java -jar "%s" d -f "%s" -o "%s" --only-main-classe') % (str(apktool_path),str(file_path),str(output_path))
         if os.system(cmd_str) == 0:
             self.__shell_test__(output_path)
             self.__scanner_file_by_apktool__(output_path)
@@ -85,7 +85,7 @@ class AndroidTask(object):
 
     # 分解dex
     def __decode_dex__(self,file_path,backsmali_path,output_path):
-        cmd_str = ("java -jar '%s' d '%s'") % (str(backsmali_path),str(file_path))
+        cmd_str = ('java -jar "%s" d "%s"') % (str(backsmali_path),str(file_path))
         if os.system(cmd_str) == 0:
             self.__get_scanner_file__(output_path)
         else:

@@ -40,7 +40,7 @@ class ParsesThreads(threading.Thread):
         output_path = cores.output_path
         strings_path = cores.strings_path
         temp =  os.path.join(output_path,"temp.txt")
-        cmd_str = ("'%s' '%s' > '%s'") % (str(strings_path),str(file_path),str(temp))
+        cmd_str = ('"%s" "%s" > "%s"') % (str(strings_path),str(file_path),str(temp))
         if os.system(cmd_str) == 0:
             with open(temp,"r",encoding='utf-8',errors='ignore') as f:
                 lines = f.readlines()
@@ -65,7 +65,6 @@ class ParsesThreads(threading.Thread):
                 self.__parse_string__(result)    
         
     def __parse_string__(self,result):
-        # print(result)
         # 通过正则筛选需要过滤的字符串
         for filter_str in config.filter_strs:
             filter_str_pat = re.compile(filter_str) 

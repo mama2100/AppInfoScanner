@@ -56,7 +56,6 @@ class DownloadThreads(threading.Thread):
                         f.close()
                 else:
                     html = resp.text
-                    print(html)
                     with open(self.cache_path,"w",encoding='utf-8',errors='ignore') as f:
                         f.write(html)
                         f.close()
