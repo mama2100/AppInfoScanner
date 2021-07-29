@@ -1,4 +1,4 @@
-![Language](https://img.shields.io/badge/Language-Python3-blue) ![License](https://img.shields.io/badge/License-GPL3.0-orange)
+ ![License](https://img.shields.io/badge/Version-V1.0.8-red) ![Language](https://img.shields.io/badge/Language-Python3-blue) ![License](https://img.shields.io/badge/License-GPL3.0-orange)
 
 
 该项目目前仅仅是规划项目中的冰山一角，如果您对此项目感兴趣或者想参与后继项目的开发工作或者翻译工作中，请发送邮件至blsm@vip.qq.com说明你的能力和诉求。
@@ -373,6 +373,35 @@ method: 用于配置自动下载过程中需要的请求方法
 
 ```
 请将错误截图以及对应的APK文件提交至 https://github.com/kelvinBen/AppInfoScanner/issues，作者看到后会及时进行处理。
+```
+## 自定义规则添加
+
+自定义规则提交路径：
+
+[点击添加自定义规则](https://github.com/kelvinBen/AppInfoScanner/issues/7）
+
+提交格式：
+```
+1. APP自定义组件添加
+
+如： fastjson的规则如下：
+APP组件: fastjson com.alibaba.fastjson
+
+2. 需要进行搜索的字符串
+
+如：查询阿里的AK规则如下:
+字符串: 
+阿里云AK .*accessKeyId.*".*"
+
+3. 需要搜素的web文件后缀名
+
+如：jsp文件的规则如下：
+网站： java语言 jsp
+
+4. Android壳规则
+如： 某数字公司的壳规则如下：
+壳：某数字公司 com.stub.StubApp
+
 ```
 
 ## 联系作者

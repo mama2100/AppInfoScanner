@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 # -*- coding: utf-8 -*-
 # Author: kelvinBen
 # Github: https://github.com/kelvinBen/AppInfoScanner
@@ -30,8 +31,10 @@ filter_components = [
 filter_strs =[
     r'https://.*|http://.*',
     # r'.*://([[0-9]{1,3}\.]{3}[0-9]{1,3}).*',
-    r'.*://([\d{1,3}\.]{3}\d{1,3}).*'
+    r'.*://([\d{1,3}\.]{3}\d{1,3}).*',
     # r'/[a-z0-9A-Z]+/.*'
+    r'.*accessKeyId.*',
+    r'.*accessKeySecret.*'
 ]
 
 # 此处忽略常见的域名等信息
@@ -85,10 +88,10 @@ web_file_suffix =[
 
 # 配置需要忽略网络嗅探的文件后缀名,此处根据具体需求进行配置，默认为不过滤
 sniffer_filter=[
-    # "jpg",
-    # "png",
-    # "jpeg",
-    # "gif",
+    "jpg",
+    "png",
+    "jpeg",
+    "gif",
 ]
 
 # 配置自动下载Apk文件或者缓存HTML的请求头信息

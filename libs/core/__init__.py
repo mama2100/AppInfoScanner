@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 # -*- coding: utf-8 -*-
 # Author: kelvinBen
 # Github: https://github.com/kelvinBen/AppInfoScanner
@@ -105,9 +106,3 @@ class Bootstrapper(object):
 
         if os.path.exists(xls_result_path):
             os.remove(xls_result_path)
-
-        
-            
-
-
-        
