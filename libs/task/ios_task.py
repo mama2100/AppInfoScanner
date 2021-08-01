@@ -69,7 +69,6 @@ class iOSTask(object):
             dir_file_path = os.path.join(scanner_dir,dir_file)
             if os.path.isdir(dir_file_path):
                 if dir_file.endswith(".app"):
-                    print("==",dir_file_path)
                     self.elf_file_name = dir_file.replace(".app","")
                 self.__get_scanner_file__(dir_file_path,file_suffix)
             else:
@@ -88,7 +87,6 @@ class iOSTask(object):
         with zipfile.ZipFile(self.path,"r") as zip_files:
             zip_file_names = zip_files.namelist()
             zip_files.extract(zip_file_names[0],output_path)
-            print("output_path",output_path)
             try:
                 new_zip_file =  zip_file_names[0].encode('cp437').decode('utf-8')
             except UnicodeEncodeError:

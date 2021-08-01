@@ -55,10 +55,11 @@ class ParsesThreads(threading.Thread):
             results = pattern.findall(file_content)
 
             # 搜素AK和SK信息
-            akAndSkList = re.compile(r'.*accessKeyId.*".*"|.*accessKeySecret.*".*"|.*secret.*".*"').findall(file_content)
-            for akAndSk in akAndSkList:
-                self.result_list.append(akAndSk.strip())
-                print("[+] AK or SK in:",akAndSk.strip())
+            if not ".js" == file_path[-3:]:
+                akAndSkList = re.compile(r'.*accessKeyId.*".*"|.*accessKeySecret.*".*"|.*secret.*".*"').findall(file_content)
+                for akAndSk in akAndSkList:
+                    self.result_list.append(akAndSk.strip())
+                    print("[+] AK or SK in:",akAndSk.strip())
 
             # 遍历所有的字符串
             for result in set(results): 
