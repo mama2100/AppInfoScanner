@@ -90,6 +90,11 @@ AppInfoScanner
     或者复制以下链接到浏览器下载最新正式版本
     
     https://github.com/kelvinBen/AppInfoScanner/releases/latest
+
+    国内快速下载通道:
+
+    git clone https://gitee.com/kelvin_ben/AppInfoScanner.git
+
 ```
 
 2. 安装依赖库
