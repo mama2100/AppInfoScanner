@@ -74,7 +74,6 @@ shell_list =[
 web_file_suffix =[
     "html",
     "js",
-    "html",
     "xml",
     "php",
     "jsp",
