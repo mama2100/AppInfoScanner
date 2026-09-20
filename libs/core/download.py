@@ -1,9 +1,9 @@
 #! /usr/bin/python3
 # -*- coding: utf-8 -*-
-# Author: kelvinBen
+# Author: kelvinBen (微信/WeChat: bromomo )
 # Github: https://github.com/kelvinBen/AppInfoScanner
-import sys
-import config
+# Gitee: https://gitee.com/kelvin_ben/AppInfoScanner
+import os
 import requests
 import threading
 import libs.core as cores
@@ -17,7 +17,11 @@ class DownloadThreads(threading.Thread):
         threading.Thread.__init__(self)
         self.url = input_path
         self.types = types
-        self.cache_path = cache_path
+        # 防御路径穿越：文件名只保留路径末段并过滤 ..，固定写入下载目录
+        safe_name = os.path.basename(str(cache_path or file_name))
+        safe_name = safe_name.replace("..", "_")
+        download_dir = str(cores.download_path)
+        self.cache_path = os.path.join(download_dir, safe_name)
         self.file_name = file_name
 
     def __requset__(self):
@@ -26,15 +30,14 @@ class DownloadThreads(threading.Thread):
             session.mount('http://', HTTPAdapter(max_retries=3))
             session.mount('https://', HTTPAdapter(max_retries=3))
             session.keep_alive = False
-            session.adapters.DEFAULT_RETRIES = 5
             urllib3.disable_warnings()
 
-            if config.method.upper() == "POST":
+            if cores.config.method.upper() == "POST":
                 resp = session.post(
-                    url=self.url, params=config.data, headers=config.headers, timeout=30)
+                    url=self.url, params=cores.config.data, headers=cores.config.headers, timeout=30)
             else:
-                resp = session.get(url=self.url, data=config.data,
-                                   headers=config.headers, timeout=30)
+                resp = session.get(url=self.url, data=cores.config.data,
+                                   headers=cores.config.headers, timeout=30)
 
             if resp.status_code == requests.codes.ok:
                 if self.types == "Android" or self.types == "iOS":
@@ -49,10 +52,8 @@ class DownloadThreads(threading.Thread):
                                 progress = int(count / length * 100)
                                 if progress != progress_tmp:
                                     progress_tmp = progress
-                                    print("\r", end="")
-                                    print(
-                                        "[*] Download progress: {}%: ".format(progress), "▋" * (progress // 2), end="")
-                                    sys.stdout.flush()
+                                    cores.progress("[*] Download progress: {}% {}".format(
+                                        progress, "▋" * (progress // 2)))
                         f.close()
                 else:
                     html = resp.text
@@ -61,8 +62,12 @@ class DownloadThreads(threading.Thread):
                         f.close()
                 cores.download_flag = True
         except Exception as e:
-            raise Exception(e)
+            cores.logp("[-] Download failed ({}): {}".format(self.url, e))
+            raise
 
     def run(self):
-        threadLock = threading.Lock()
-        self.__requset__()
+        try:
+            self.__requset__()
+        except Exception:
+            cores.thread_failed = True
+            cores.logexc("[!] DownloadThread aborted: {}".format(self.url))

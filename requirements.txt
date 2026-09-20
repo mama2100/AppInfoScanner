@@ -1,5 +1,6 @@
-requests
-click
-openpyxl
-frida-tools==11.0.0
-frida-dexdump
+requests==2.34.2
+click==8.5.0
+openpyxl==3.1.5
+frida==17.18.0
+frida-tools==14.10.4
+frida-dexdump==2.0.1
